@@ -23,7 +23,7 @@
 - name: Add vagrant user to apache group
   command: usermod -a -G apache vagrant
 - name: Set permissions for /srv
-  file: path=/srv owner=apache group=apache mode=2750 recurse=yes
+  file: path=/srv owner=apache group=apache mode=0775 recurse=yes
 - name: Run Apache httpd on boot
   service:
     name: httpd
