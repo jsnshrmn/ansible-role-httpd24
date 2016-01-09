@@ -22,10 +22,8 @@
   command: sed -i "s/^[^#]/#&/" /etc/httpd/conf.d/welcome.conf
 - name: Add vagrant user to apache group
   command: usermod -a -G apache vagrant
-- name: Set ownership of service directory
-  command: chown apache:apache /srv
-- name: Allow apache users to write to service directory
-  command: chmod g+wt /srv
+- name: Set permissions for /srv
+  file: path=/srv owner=apache group=apache mode=2750 recurse=yes
 - name: Run Apache httpd on boot
   service:
     name: httpd
