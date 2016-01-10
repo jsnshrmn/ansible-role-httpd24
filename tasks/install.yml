@@ -1,5 +1,5 @@
 ---
-- name: Install packages necessary to run Drupal
+- name: Install packages necessary to run Apache
   yum:
     name: "{{ item }}"
     state: latest
