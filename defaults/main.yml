@@ -8,8 +8,8 @@
 httpd_dn_suffix: 'example.com'
 ## Your email address
 email: 'user@example.com'
-## The hostnames of the sites you will build.
-sites: ['dev1', 'dev2']
+## The hostnames of the sites you will build. (for ngrok and letsencrypt)
+#sites: ['dev1', 'dev2']
 ## Let's encrypt cert paths
 #httpd_cert_path: '/vagrant/letsencrypt/etc/live/'
 #httpd_key_path: '/vagrant/letsencrypt/etc/live/'
