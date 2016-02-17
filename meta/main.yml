@@ -133,4 +133,4 @@ galaxy_info:
   #- system
   - web
 dependencies:
-  - jsnshrmn.centos7
+  - OULibraries.centos7
