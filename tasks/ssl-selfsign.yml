@@ -1,8 +1,8 @@
 ---
 - name: Ensure ssl cert directory exists
-  file: path="{{ httpd_cert_path }}"/star".{{ httpd_dn_suffix }}" state=directory
+  file: path="{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}" state=directory
 - name: Ensure ssl key directory exists
-  file: path="{{ httpd_key_path }}"/star".{{ httpd_dn_suffix }}" state=directory
+  file: path="{{ httpd_key_path }}/star.{{ httpd_dn_suffix }}" state=directory
 - name: Ensure Apache is stopped
   service:
     name: httpd
@@ -10,11 +10,11 @@
 - name: Generate a self-signed cert.
   sudo: yes
   command: >
-     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/C=US/ST=Oklahoma/L=Norman/O=University of Oklahoma/OU=Library Technology Platforms/CN=*.{{ httpd_dn_suffix }}" -days 90 -keyout "{{ httpd_key_path }}"/star".{{ httpd_dn_suffix }}"/privkey.pem -out "{{ httpd_cert_path }}"/star".{{ httpd_dn_suffix }}"/cert.pem 
+     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/C=US/ST=Oklahoma/L=Norman/O=University of Oklahoma/OU=Library Technology Platforms/CN=*.{{ httpd_dn_suffix }}" -days 90 -keyout "{{ httpd_key_path }}"/star."{{ httpd_dn_suffix }}"/privkey.pem -out "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/cert.pem 
 - name: Create a dummy chain file
   sudo: yes
   shell: >
-    echo \# > "{{ httpd_cert_path }}"/star".{{ httpd_dn_suffix }}"/chain.pem
+    echo \# > "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/chain.pem"
 - name: Ensure Apache is started
   service:
     name: httpd
