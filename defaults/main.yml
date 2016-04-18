@@ -8,9 +8,10 @@
 httpd_dn_suffix: 'example.com'
 ## Your email address
 email: 'user@example.com'
-## Let's encrypt cert paths
-#httpd_cert_path: '/vagrant/letsencrypt/etc/live/'
-#httpd_key_path: '/vagrant/letsencrypt/etc/live/'
+## Let's encrypt paths
+#letsencrypt_path: '/opt/letsencrypt'
+#httpd_cert_path: "{{ letsencrypt_path }}/etc/live/"
+#httpd_key_path: "{{ letsencrypt_path }}/etc/live/"
 ## Self-signed cert paths
 httpd_cert_path: '/etc/pki/tls/certs/'
 httpd_key_path: '/etc/pki/tls/private/'
