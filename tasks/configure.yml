@@ -1,6 +1,4 @@
 ---
-- name: Remove default apache listeners
-  lineinfile: dest=/etc/httpd/conf/httpd.conf state=present regexp='^Listen(.*)' line='#Listen\1' backrefs='yes'
 - name: Set environment variables for apache
   template:
     src: sysconfig-httpd.j2
