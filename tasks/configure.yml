@@ -17,6 +17,13 @@
     mode: 0644
     owner: root
     group: root
+- name: 00srv_default.conf
+  copy:
+    src: 00srv_default.conf
+    dest: /etc/httpd/conf.d/00srv_default.conf
+    mode: 0644
+    owner: root
+    group: root
 - name: Comment out the welcome conf
   command: sed -i "s/^[^#]/#&/" /etc/httpd/conf.d/welcome.conf
 - name: Set permissions for /srv
