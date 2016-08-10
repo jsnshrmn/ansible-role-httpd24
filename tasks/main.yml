@@ -1,9 +1,9 @@
 ---
 - include: install.yml
   sudo: yes
-- include: configure.yml
-  sudo: yes
 - include: ssl-selfsign.yml
+  sudo: yes
+- include: configure.yml
   sudo: yes
 - include: vsphere.yml
   when: (ansible_virtualization_type == "VMware") and (ansible_virtualization_role == "guest")
