@@ -1,12 +1,9 @@
 ---
 - include: install.yml
   become: true
+
 - include: ssl-selfsign.yml
   become: true
+
 - include: configure.yml
   become: true
-- include: vsphere.yml
-  when: (ansible_virtualization_type == "VMware") and (ansible_virtualization_role == "guest")
-  become: true
-  tags:
-  - vsphere
