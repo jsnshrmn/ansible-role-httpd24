@@ -29,10 +29,18 @@
     owner: root
     group: root
 
-- name: Copy ssl.conf
+- name: Copy 00http2.conf
   copy:
     src: 00http2.conf
     dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00http2.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy 00gzip.conf
+  copy:
+    src: 00gzip.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00gzip.conf
     mode: 0644
     owner: root
     group: root
