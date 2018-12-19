@@ -1,7 +1,7 @@
 jsnshrmn.httpd24
 =========
 
-Apache HTTP Server (httpd), including a high performance event-based processing model, enhanced SSL module and FastCGI support.
+Apache HTTP Server (httpd), including a high performance event-based processing model, enhanced SSL module, disk-based caching, and FastCGI support.
 
 Requirements
 ------------
