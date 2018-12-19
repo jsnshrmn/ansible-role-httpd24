@@ -1,5 +1,0 @@
----
-# fetch OULibraries.centos7 from github
-- src: https://github.com/OULibraries/ansible-role-centos7
-  version: master
-  name: OULibraries.centos7
