@@ -45,6 +45,14 @@
     owner: root
     group: root
 
+- name: Copy 00cache.conf
+  copy:
+    src: 00gzip.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00cache.conf
+    mode: 0644
+    owner: root
+    group: root
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
@@ -78,3 +86,12 @@
     owner: apache
     group: apache
     mode: 0775
+
+- name: Ensure /var/cache/httpd24 exists
+  file:
+    path: /var/cache/httpd24
+    state: directory
+    mode: 0755
+    owner: apache
+    group: apache
+    recurse: yes
