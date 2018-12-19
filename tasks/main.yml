@@ -1,5 +1,6 @@
 ---
-- include: install.yml
+
+- include: yum.yml
   become: true
 
 - include: ssl-selfsign.yml

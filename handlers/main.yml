@@ -1,2 +1,8 @@
 ---
-# handlers file for apache
+# handlers file for httpd24
+
+- name: Enable httpd24
+  service:
+    name: httpd24-httpd
+    state: restarted
+    enabled: yes

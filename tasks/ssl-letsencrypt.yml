@@ -1,18 +1,24 @@
 ---
+
 - name: Git letsencrypt.
-  git: repo=https://github.com/letsencrypt/letsencrypt
-       dest="{{ letsencrypt_path }}"/build force=yes
-- name: Ensure Apache is stopped
+  git:
+    repo: https://github.com/letsencrypt/letsencrypt
+    dest: "{{ letsencrypt_path }}"/build
+    force: yes
+
+- name: Ensure httpd24 is stopped
   service:
-    name: httpd
+    name: httpd24-httpd
     state: stopped
+
 - name: Generate key and CSR, and get a signed cert.
   command: >
     stat "{{ letsencrypt_path }}"/etc/live/"{{ item }}"."{{ httpd_dn_suffix }}" || ./letsencrypt-auto certonly --renew-by-default --text --config-dir "{{ letsencrypt_path }}"/etc --standalone --standalone-supported-challenges http-01 --email "{{ email }}" --agree-tos -d "{{ item }}"."{{ httpd_dn_suffix }}"
   args:
     chdir: "{{ letsencrypt_path }}"/build
   with_items: sites
-- name: Ensure Apache is started
+
+- name: Ensure httpd24 is started
   service:
-    name: httpd
+    name: httpd24-httpd
     state: started

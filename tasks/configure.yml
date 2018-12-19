@@ -1,35 +1,40 @@
 ---
-- name: Set environment variables for apache
+
+- name: Set environment variables for httpd24
   template:
     src: sysconfig-httpd.j2
-    dest: /etc/sysconfig/httpd
+    dest: /opt/rh/httpd24/root/etc/sysconfig/httpd
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
-    dest: /etc/httpd/conf.d/ssl.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf
     mode: 0644
     owner: root
     group: root
+
 - name: 00ssl.include
   copy:
     src: 00ssl.include
-    dest: /etc/httpd/conf.d/00ssl.include
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00ssl.include
     mode: 0644
     owner: root
     group: root
+
 - name: 00srv_default.conf
   copy:
     src: 00srv_default.conf
-    dest: /etc/httpd/conf.d/00srv_default.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00srv_default.conf
     mode: 0644
     owner: root
     group: root
+
 - name: Comment out the welcome conf
-  command: sed -i "s/^[^#]/#&/" /etc/httpd/conf.d/welcome.conf
+  command: sed -i "s/^[^#]/#&/" /opt/rh/httpd24/root/etc/httpd/conf.d/welcome.conf
+
 - name: Set permissions for /srv
-  file: path=/srv owner=apache group=apache mode=0775
-- name: Run Apache httpd on boot
-  service:
-    name: httpd
-    state: started
-    enabled: yes
+  file:
+    path: /srv
+    owner: apache
+    group: apache
+    mode: 0775

@@ -1,21 +1,31 @@
 ---
+
 - name: Ensure ssl cert directory exists
-  file: path="{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}" state=directory
+  file:
+    path: "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}"
+    state: directory
+
 - name: Ensure ssl key directory exists
-  file: path="{{ httpd_key_path }}/star.{{ httpd_dn_suffix }}" state=directory
-- name: Ensure Apache is stopped
+  file:
+    path: "{{ httpd_key_path }}/star.{{ httpd_dn_suffix }}"
+    state: directory
+
+- name: Ensure httpd24 is stopped
   service:
-    name: httpd
+    name: httpd24-httpd
     state: stopped
+
 - name: Generate a self-signed cert.
   become: true
   command: >
-     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/C=US/ST=Oklahoma/L=Norman/O=University of Oklahoma/OU=Library Technology Platforms/CN=*.{{ httpd_dn_suffix }}" -days 90 -keyout "{{ httpd_key_path }}"/star."{{ httpd_dn_suffix }}"/privkey.pem -out "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/cert.pem 
+     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/CN=*.{{ httpd_dn_suffix }}" -days 90 -keyout "{{ httpd_key_path }}"/star."{{ httpd_dn_suffix }}"/privkey.pem -out "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/cert.pem 
+
 - name: Create a dummy chain file
   become: true
   shell: >
     echo \# > "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/chain.pem"
-- name: Ensure Apache is started
+
+- name: Ensure httpd24 is started
   service:
-    name: httpd
+    name: httpd24-httpd
     state: started

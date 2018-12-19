@@ -1,5 +1,6 @@
 ---
 
-# Location of apache certs
+# Location of httpd24 certs
+
 httpd_cert_path: '/etc/pki/tls/certs/'
 httpd_key_path: '/etc/pki/tls/private/'

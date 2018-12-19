@@ -1,0 +1,19 @@
+---
+
+- name: Install Red Hat Software Collections
+  yum:
+    name: centos-release-scl
+    state: present
+
+- name: Install yum packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - net-tools
+    - bind-utils
+    - httpd24
+    - httpd24-nghttp2
+    - httpd24-mod_ssl
+  notify:
+    - Enable httpd24

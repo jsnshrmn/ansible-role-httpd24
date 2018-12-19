@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: Jason Sherman
-  description: Apache server for OULib
-  company: University of Oklahoma Libraries
+  description: Apache HTTP Server (httpd), including a high performance event-based processing model, enhanced SSL module and FastCGI support.
+  # company:
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
