@@ -22,6 +22,14 @@
     replace: >
       # DocumentRoot "/opt/rh/httpd24/root/var/www/html"
 
+- name: Copy 00-mpm.conf
+  copy:
+    src: 00-mpm.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-mpm.conf
+    mode: 0644
+    owner: root
+    group: root
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
