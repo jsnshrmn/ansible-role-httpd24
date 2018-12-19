@@ -5,6 +5,15 @@
     src: sysconfig-httpd.j2
     dest: /opt/rh/httpd24/root/etc/sysconfig/httpd
 
+
+- name: Enable SCL HTTPD 2.4 for interactive users
+  copy:
+    src: httpd24.sh
+    dest: /etc/profile.d/httpd24.sh
+    mode: 0755
+    owner: root
+    group: wheel
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
