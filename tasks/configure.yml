@@ -20,7 +20,7 @@
     regexp: >
       ^DocumentRoot "\/opt\/rh\/httpd24\/root\/var\/www\/html"$
     replace: >
-      DocumentRoot "/dev/null"
+      # DocumentRoot "/opt/rh/httpd24/root/var/www/html"
 
 - name: Copy ssl.conf
   copy:
