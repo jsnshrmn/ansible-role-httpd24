@@ -32,6 +32,14 @@
 
 - name: Copy ssl.conf
   copy:
+    src: 00http2.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00http2.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy ssl.conf
+  copy:
     src: ssl.conf
     dest: /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf
     mode: 0644
