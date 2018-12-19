@@ -47,7 +47,7 @@
 
 - name: Copy 00cache.conf
   copy:
-    src: 00gzip.conf
+    src: 00cache.conf
     dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00cache.conf
     mode: 0644
     owner: root
