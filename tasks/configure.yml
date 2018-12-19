@@ -14,6 +14,14 @@
     owner: root
     group: wheel
 
+- name: Unset default DocumentRoot
+  replace:
+    dest: /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
+    regexp: >
+      ^DocumentRoot "\/opt\/rh\/httpd24\/root\/var\/www\/html"$
+    replace: >
+      DocumentRoot "/dev/null"
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
