@@ -53,6 +53,14 @@
     owner: root
     group: root
 
+- name: Copy 00expires.conf
+  copy:
+    src: 00expires.conf
+    dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00expires.conf
+    mode: 0644
+    owner: root
+    group: root
+
 - name: Copy ssl.conf
   copy:
     src: ssl.conf
