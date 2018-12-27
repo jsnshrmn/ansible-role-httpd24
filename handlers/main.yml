@@ -1,8 +1,14 @@
 ---
 # handlers file for httpd24
 
-- name: Enable httpd24
+- name: Enable httpd24-httpd
   service:
     name: httpd24-httpd
+    state: restarted
+    enabled: yes
+
+- name: Enable httpd24-htcacheclean
+  service:
+    name: httpd24-htcacheclean
     state: restarted
     enabled: yes
