@@ -16,4 +16,5 @@
     - httpd24-nghttp2
     - httpd24-mod_ssl
   notify:
-    - Enable httpd24
+    - Enable httpd24-httpd
+    - Enable httpd24-htcacheclean
