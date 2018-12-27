@@ -103,9 +103,9 @@
     group: apache
     mode: 0775
 
-- name: Ensure /opt/rh/httpd24/root/var/cache/httpd24 exists
+- name: Ensure /opt/rh/httpd24/root/var/cache/httpd exists
   file:
-    path: /opt/rh/httpd24/root/var/cache/httpd24
+    path: /opt/rh/httpd24/root/var/cache/httpd
     state: directory
     mode: 0700
     owner: apache
