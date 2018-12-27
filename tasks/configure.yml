@@ -13,14 +13,6 @@
     owner: root
     group: wheel
 
-- name: Unset default DocumentRoot
-  replace:
-    dest: /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
-    regexp: >
-      ^DocumentRoot "\/opt\/rh\/httpd24\/root\/var\/www\/html"$
-    replace: >
-      # DocumentRoot "/opt/rh/httpd24/root/var/www/html"
-
 - name: Copy 00-mpm.conf
   copy:
     src: 00-mpm.conf
@@ -69,7 +61,7 @@
     owner: root
     group: root
 
-- name: 00ssl.include
+- name: Copy 00ssl.include
   copy:
     src: 00ssl.include
     dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00ssl.include
@@ -77,13 +69,29 @@
     owner: root
     group: root
 
-- name: 00srv_default.conf
+- name: Copy 00srv_default.conf
   copy:
     src: 00srv_default.conf
     dest: /opt/rh/httpd24/root/etc/httpd/conf.d/00srv_default.conf
     mode: 0644
     owner: root
     group: root
+
+- name: Copy htcacheclean
+  copy:
+    src: htcacheclean
+    dest: /opt/rh/httpd24/root/etc/sysconfig/htcacheclean
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Unset default DocumentRoot
+  replace:
+    dest: /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
+    regexp: >
+      ^DocumentRoot "\/opt\/rh\/httpd24\/root\/var\/www\/html"$
+    replace: >
+      # DocumentRoot "/opt/rh/httpd24/root/var/www/html"
 
 - name: Comment out the welcome conf
   command: sed -i "s/^[^#]/#&/" /opt/rh/httpd24/root/etc/httpd/conf.d/welcome.conf
@@ -95,11 +103,11 @@
     group: apache
     mode: 0775
 
-- name: Ensure /var/cache/httpd24 exists
+- name: Ensure /opt/rh/httpd24/root/var/cache/httpd24 exists
   file:
-    path: /var/cache/httpd24
+    path: /opt/rh/httpd24/root/var/cache/httpd24
     state: directory
-    mode: 0755
+    mode: 0700
     owner: apache
     group: apache
     recurse: yes
