@@ -7,23 +7,31 @@
   stat:
     path: "{{ httpd_key_path }}/star.{{ httpd_dn_suffix }}/privkey.pem"
     follow: yes
-  register: http_privkey_check
+  register: httpd_privkey_check
+  tags:
+    - ssl
 
 - name: check if cert exists
-  stat: 
+  stat:
     path: "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/cert.pem"
     follow: yes
-  register: http_cert_check
+  register: httpd_cert_check
+  tags:
+    - ssl
 
 - name: check if chain exists
-  stat: 
+  stat:
     path: "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/chain.pem"
     follow: yes
-  register: http_chain_check
+  register: httpd_chain_check
+  tags:
+    - ssl
 
 - include: ssl-selfsign.yml
   become: true
-  when: not (http_privkey_check.stat.exists and http_cert_check.stat.exists and http_chain_check.stat.exists)
+  when: not ((httpd_privkey_check is defined and httpd_privkey_check.stat.exists) and (httpd_cert_check is defined and httpd_cert_check.stat.exists) and (httpd_chain_check is defined and httpd_chain_check.stat.exists))
+  tags:
+    - ssl
 
 - include: configure.yml
   become: true
