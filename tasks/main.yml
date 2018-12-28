@@ -23,7 +23,7 @@
 
 - include: ssl-selfsign.yml
   become: true
-  when: http_privkey_check.stat.exists is not defined or http_cert_check.stat.exists is not defined or http_chain_check.stat.exists is not defined
+  when: not (http_privkey_check.stat.exists or http_cert_check.stat.exists is or http_chain_check.stat.exists)
 
 - include: configure.yml
   become: true
