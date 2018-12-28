@@ -11,13 +11,13 @@
 
 - name: check if cert exists
   stat: 
-    path: "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/cert.pem"
+    path: "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/cert.pem"
     follow: yes
   register: http_cert_check
 
 - name: check if chain exists
   stat: 
-    path: "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/chain.pem"
+    path: "{{ httpd_cert_path }}/star.{{ httpd_dn_suffix }}/chain.pem"
     follow: yes
   register: http_chain_check
 
