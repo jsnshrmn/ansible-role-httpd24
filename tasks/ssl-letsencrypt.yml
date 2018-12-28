@@ -13,7 +13,7 @@
 
 - name: Generate key and CSR, and get a signed cert.
   command: >
-    stat "{{ letsencrypt_path }}"/etc/live/"{{ item }}"."{{ httpd_dn_suffix }}" || ./letsencrypt-auto certonly --renew-by-default --text --config-dir "{{ letsencrypt_path }}"/etc --standalone --standalone-supported-challenges http-01 --email "{{ email }}" --agree-tos -d "{{ item }}"."{{ httpd_dn_suffix }}"
+     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/O=Fake {{ httpd_fake_orgs | shuffle | first }} Organization No. {{ 1000 | random }}/OU=Fake {{ httpd_fake_units | shuffle |first }} Unit No. {{ 1000 | random }}/CN=*.{{ httpd_dn_suffix }}" -days 90 -keyout "{{ httpd_key_path }}"/star."{{ httpd_dn_suffix }}"/privkey.pem -out "{{ httpd_cert_path }}"/star."{{ httpd_dn_suffix }}"/cert.pem
   args:
     chdir: "{{ letsencrypt_path }}"/build
   with_items: sites
