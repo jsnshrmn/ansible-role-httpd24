@@ -1,6 +1,16 @@
 ---
 
 # Location of httpd24 certs
-
 httpd_cert_path: '/etc/pki/tls/certs/'
 httpd_key_path: '/etc/pki/tls/private/'
+
+# Fake names that get shuffled into self-signed certs.
+httpd_fake_orgs:
+  - Technology
+  - Government
+  - Manufacturing
+
+httpd_fake_units:
+  - Human Resources
+  - Public Relations
+  - Accounting
